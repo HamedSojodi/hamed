@@ -1,0 +1,84 @@
+#left {
+    background-color: #005fcc;
+    width:80px;
+    height: 350px;
+    border: 1px solid blue;
+    padding: 10%;
+    margin-right: auto;
+    margin-top: 30px;
+    margin-bottom: 20px;
+
+}
+img {
+    border-radius: 60%;
+
+    margin-top: -80px;
+    margin-bottom: 0px;
+    margin-left: -70px;
+}
+#name{
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    color: azure;
+    padding: 0%;
+    margin-right:0px;
+    margin-top: -10px;
+    margin-left: -70px;
+
+}
+#takhasos {
+     font-family: initial;
+    color: azure;
+    padding: 0%;
+    margin-right:0px;
+    margin-top: -10px;
+    margin-left: -40px;
+}
+#social {
+
+    display: flex;
+    height: 10vh;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+}
+
+ul {
+    display: flex;
+}
+ul li {
+    position: relative;
+    display: block;
+    color: #666;
+    font-size: 20px;
+    height: 40px;
+    width: 40px;
+    line-height: 40px;
+    border-radius: 50%;
+    margin: 0 15px;
+    cursor: pointer;
+
+
+}
+ul li :before{
+    position: absolute;
+    content: '';
+    top: 0;
+    left: 0;
+    background: #d35400;
+    height: 100%;
+    width: 100%;
+    border-radius: 50%;
+    z-index: -1;
+    transform: scale(0.9);
+    transition: .5s;
+}
+ul li:hover:before{
+    transform: scale(1.2);
+    box-shadow: 0 0 15px #d35400;
+}
+ul li :hover{
+    color: #ffa502;
+    box-shadow: 0 0 15px #d35400;
+    text-shadow: 0 0 15px #d35400;
+
+}
