@@ -40,6 +40,7 @@ img {
     text-align: center;
     align-items: center;
     justify-content: center;
+    margin-right: 50px;
 }
 
 ul {
@@ -48,37 +49,57 @@ ul {
 ul li {
     position: relative;
     display: block;
-    color: #666;
+    color: white;
     font-size: 20px;
     height: 40px;
     width: 40px;
-    line-height: 40px;
+    background: #005fcc;
+    line-height: 50px;
     border-radius: 50%;
-    margin: 0 15px;
+    margin: 0 9px;
     cursor: pointer;
 
+}
+#about{
+    color: white;
+    margin: 0 -30px ;
+    line-height: 30px;
+}
+#1 {
+    margin-left: -100px;
+    margin-top: 30px;
+    margin-bottom: 20px;
 
 }
-ul li :before{
-    position: absolute;
-    content: '';
-    top: 0;
-    left: 0;
-    background: #d35400;
-    height: 100%;
-    width: 100%;
-    border-radius: 50%;
-    z-index: -1;
-    transform: scale(0.9);
-    transition: .5s;
-}
-ul li:hover:before{
-    transform: scale(1.2);
-    box-shadow: 0 0 15px #d35400;
-}
-ul li :hover{
-    color: #ffa502;
-    box-shadow: 0 0 15px #d35400;
-    text-shadow: 0 0 15px #d35400;
+.a {
+    float: right;
+    width: 65%;
+    margin-bottom: -10px;
+    color: red;
 
+}
+
+
+.b {
+    float: right;
+    width: 65%;
+    margin-top: 50px;
+}
+
+.c {
+    float: right;
+    width: 65%;
+    margin-top: 50px;
+    line-height: 2em;
+
+}
+.d {
+    float: right;
+    width: 65%;
+    margin-top: 50px;
+    word-spacing: 120px;
+}
+mark {
+    background-color: white;
+    color: darkgray;
 }
