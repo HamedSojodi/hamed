@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>java script class metode</title>
+</head>
+<body>
+<h1>JavaScript calculator</h1>
+<p id="test1"></p>
+<p id="test2"></p>
+<p id="test3"></p>
+
+
+<script>
+    class Calculator {
+
+        constructor(nember1, nember2) {
+            this.nember1 = nember1;
+            this.nember2 = nember2;
+        }
+
+        read(n1, n2) {
+            this.nember1 = n1
+            this.nember2 = n2
+            return this.nember1 + '  ' + this.nember2
+
+        }
+
+
+        Sum() {
+            return this.nember1 + this.nember2
+        }
+
+        Mul() {
+            return this.nember1 * this.nember2
+        }
+
+    }
+
+    ob1 = new Calculator();
+    document.getElementById("test1").innerHTML = ob1.read(4, 2)
+
+    ob2 = new Calculator(2, 3);
+    document.getElementById("test2").innerHTML = ob2.Sum();
+
+
+    ob3 = new Calculator(3, 3);
+    document.getElementById("test3").innerHTML = ob3.Mul();
+
+
+</script>
+
+
+</body>
+</html>
