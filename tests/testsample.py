@@ -5,7 +5,7 @@ from mobilestore.models import Brand, Mobile
 
 
 class TestTasks(TestCase):
-    fixtures = ('store',)
+    fixtures = ('store.json',)
 
     def test_list_all_brands(self):
         solution = Brand.objects.all()
@@ -17,4 +17,7 @@ class TestTasks(TestCase):
         answer = queries.most_expensive_mobile()
         self.assertEqual(solution.id, answer.id)
 
-
+    def test_list_all_mobiles(self):
+        solution = Mobile.objects.all()
+        answer = queries.list_all_mobiles()
+        self.assertQuerysetEqual(solution, answer, ordered=False, transform=lambda x: x)
