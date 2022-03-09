@@ -1,8 +1,9 @@
 {% extends 'base.html' %}
+{% load i18n %}
 {% block content %}
     {% if request.user.id == post.user.id %}
-        <a href="{% url 'home:post_delete' post.id %}" class="btn btn-danger">Delete</a>
-        <a href="{% url 'home:post_update' post.id %}" class="btn btn-danger">Update</a>
+        <a href="{% url 'home:post_delete' post.id %}" class="btn btn-danger">{% trans "Delete" %}</a>
+        <a href="{% url 'home:post_update' post.id %}" class="btn btn-danger">{% trans "Update" %}</a>
     {% endif %}
     <h2>
         <a href="{% url 'account:user_profile' post.user.id %}">{{ post.user.username }}</a>-{{ post.updated|date:"Y-M-D-h:m" }}

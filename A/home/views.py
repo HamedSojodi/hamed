@@ -8,17 +8,18 @@ from django.contrib import messages
 from .forms import PostCreateUpdateForm, CommentCreateForm, CommentReplyForm, PostSearchForm
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
-
+from django.utils.translation import gettext as _
 
 # Create your views here.
 class HomeView(View):
     form_class= PostSearchForm
 
     def get(self, request):
+        trance=_('hello')
         posts = Post.objects.all()
         if request.GET.get('search'):
             posts = posts.filter(body__contains=request.GET['search'])
-        return render(request, 'home/index.html', {'posts': posts, 'form':self.form_class})
+        return render(request, 'home/index.html', {'posts': posts, 'form':self.form_class, 'trance':trance})
 
 
 class PostDetailView(View):

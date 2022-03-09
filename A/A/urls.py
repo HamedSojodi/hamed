@@ -15,13 +15,28 @@ Including another URLconf
 """
 from django.conf import settings
 from django.contrib import admin
-from django.urls import path, include
+from django.urls import path, include, re_path
 from django.conf.urls.static import static
 
-urlpatterns = [
+# urlpatterns = [
+#     path('admin/', admin.site.urls),
+#     path('', include('home.urls', namespace='home')),
+#     path('account/', include('account.urls', namespace='account')),
+# ]
+
+from django.conf.urls.i18n import i18n_patterns
+
+urlpatterns = i18n_patterns(
     path('admin/', admin.site.urls),
     path('', include('home.urls', namespace='home')),
     path('account/', include('account.urls', namespace='account')),
-]
+    prefix_default_language=False
+)
+
 if settings.DEBUG:
-        urlpatterns += static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT)
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
+if 'rosetta' in settings.INSTALLED_APPS:
+    urlpatterns += [
+        re_path(r'^rosetta/', include('rosetta.urls'))
+    ]
