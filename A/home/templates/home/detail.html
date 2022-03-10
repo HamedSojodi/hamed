@@ -16,10 +16,10 @@
         <form action="" method="post">
             {% csrf_token %}
             {{ form.as_p }}
-            <input type="Submit" value="Send">
+            <input type="Submit" value="{% trans "Send" %}">
         </form><br/>
     {% else %}
-        <P class="alert alert-danger">only logged in users can comment.</P>
+        <P class="alert alert-danger">{% trans "only logged in users can comment." %}</P>
 
     {% endif %}
 
@@ -30,11 +30,11 @@
             <p class="card-body">{{ comment.body }}</p>
 
             {% if request.user.is_authenticated %}
-                <a href="{% url 'home:post_like' post.id %}" class=" {% if can_like %}disabled {% endif %} btn btn-primary col-md-2 p-2 m-2">like {{post.like_cont }}</a>
+                <a href="{% url 'home:post_like' post.id %}" class=" {% if can_like %}disabled {% endif %} btn btn-primary col-md-2 p-2 m-2">{% trans "like" %} {{post.like_cont }}</a>
                 <form action="{% url 'home:add_reply' post.id comment.id %}" method="post">
                 {% csrf_token %}
                 {{ from_reply.as_p }}
-                <input type="submit" value="Send">
+                <input type="submit" value={% trans "Send" %}>
                 </form>
             {% endif %}
 
@@ -48,7 +48,7 @@
         {% endwith %}
         </div><br/>
     {% empty %}
-        <P class="card bg-dark text-white">No comments yet!</P>
+        <P class="card bg-dark text-white">{% trans "No comments yet!" %}</P>
     {% endfor %}
 
 

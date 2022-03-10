@@ -120,7 +120,7 @@ STATIC_URL = '/static/'
 from django.utils.translation import gettext_lazy as _
 
 
-LANGUAGE_CODE = 'fa'
+LANGUAGE_CODE = 'en'
 LANGUAGES = (
     ('en', _('English')),
     ('fa', _('Farsi')),

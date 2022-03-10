@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-03-09 12:41+0330\n"
+"POT-Creation-Date: 2022-03-09 22:30+0330\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -26,13 +26,50 @@ msgstr ""
 msgid "Farsi"
 msgstr ""
 
+#: .\home\forms.py:9 .\home\forms.py:15 .\home\forms.py:24
+msgid "body"
+msgstr ""
+
+#: .\home\models.py:18 .\home\models.py:19
+msgid "Post"
+msgstr ""
+
+#: .\home\models.py:46 .\home\models.py:47
+msgid "Comment"
+msgstr ""
+
+#: .\home\models.py:58 .\home\models.py:59
+msgid "Vote"
+msgstr ""
+
+#: .\home\templates\home\create.html:7 .\home\templates\home\detail.html:19
+#: .\home\templates\home\detail.html:37
+msgid "Send"
+msgstr ""
+
 #: .\home\templates\home\detail.html:5
 #: .\venv\Lib\site-packages\django\forms\formsets.py:483
 msgid "Delete"
 msgstr ""
 
-#: .\home\templates\home\detail.html:6
+#: .\home\templates\home\detail.html:6 .\home\templates\home\update.html:7
 msgid "Update"
+msgstr ""
+
+#: .\home\templates\home\detail.html:22
+msgid "only logged in users can comment."
+msgstr ""
+
+#: .\home\templates\home\detail.html:33
+msgid "like"
+msgstr ""
+
+#: .\home\templates\home\detail.html:51
+msgid "No comments yet!"
+msgstr ""
+
+#: .\home\templates\home\index.html:6
+msgid "Search"
 msgstr ""
 
 #: .\home\views.py:18

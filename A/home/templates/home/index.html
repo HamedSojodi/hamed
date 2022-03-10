@@ -1,8 +1,9 @@
 {% extends 'base.html' %}
+{% load i18n %}
 {% block content %}
     <form action="" method="get" class="m-3 p-3">
     {{ form.as_p }}
-    <input type="submit" value="Search">
+    <input type="submit" value={% trans "Search" %}>
     </form>
 
 

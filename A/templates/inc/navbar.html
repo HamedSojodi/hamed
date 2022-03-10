@@ -1,14 +1,31 @@
+{% load i18n %}
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
   <div class="container-fluid">
     <div class="navbar-nav">
-      <a class="nav-link active" href="{% url 'home:home' %}">Home</a>
+      <a class="nav-link active" href="{% url 'home:home' %}">{% trans "Home" %}</a>
       {% if request.user.is_authenticated %}
-      <a class="nav-link active" href="{% url 'account:user_logout' %}">Logout</a>
-      <a class="nav-link active" href="{% url 'account:user_profile' request.user.id %}">Profile</a>
+      <a class="nav-link active" href="{% url 'account:user_logout' %}">{% trans "Logout" %}</a>
+      <a class="nav-link active" href="{% url 'account:user_profile' request.user.id %}">{% trans "Profile" %}</a>
       {% else %}
-      <a class="nav-link active" href="{% url 'account:user_register' %}">Register</a>
-      <a class="nav-link active" href="{% url 'account:user_login' %}">Login</a>
+      <a class="nav-link active" href="{% url 'account:user_register' %}">{% trans "Register" %}</a>
+      <a class="nav-link active" href="{% url 'account:user_login' %}">{% trans "Login" %}</a>
       {% endif %}
+    <dive>
+
+        {% get_current_language as LANGUAGE_CODE %}
+        {% get_available_languages as LANGUAGES %}
+        {% get_language_info_list for LANGUAGES as languages %}
+        <ul>
+        {% for lang in languages %}
+            <li>
+            <a href="/{{ lang.code }}/"{% if lang.code == LANGUAGE_CODE %} class ="selected"{% endif %}>{{ lang.name_local }}</a>
+            </li>
+        {% endfor %}
+        </ul>
+
+
+</dive>
+
     </div>
   </div>
 </nav>

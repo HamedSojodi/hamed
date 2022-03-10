@@ -30,7 +30,7 @@ urlpatterns = i18n_patterns(
     path('admin/', admin.site.urls),
     path('', include('home.urls', namespace='home')),
     path('account/', include('account.urls', namespace='account')),
-    prefix_default_language=False
+    prefix_default_language=True
 )
 
 if settings.DEBUG:
