@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect, get_list_or_404, get_object_or_404
-from django.http import HttpResponse
+from django.http import HttpResponse,JsonResponse
 from django.utils.text import slugify
 from django.views import View
 from .models import Post, Comment, Vote
@@ -129,6 +129,7 @@ class PostAddReplyView(LoginRequiredMixin, View):
 
 class PosLikesView(LoginRequiredMixin, View):
     def get(self, request, post_id):
+
         post = get_object_or_404(Post, pk=post_id)
         like = Vote.objects.filter(post=post, user=request.user)
         if like.exists():
@@ -137,4 +138,5 @@ class PosLikesView(LoginRequiredMixin, View):
         else:
             Vote.objects.create(post=post, user=request.user)
             messages.success(request, 'You liked this post!', 'success')
+
         return redirect('home:post_detail', post.id, post.slug)

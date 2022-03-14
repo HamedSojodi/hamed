@@ -1,8 +1,11 @@
 {% extends 'base.html' %}
 {% load i18n %}
+{% block head %}
+
+{% endblock %}
 {% block content %}
     {% if request.user.id == post.user.id %}
-        <a href="{% url 'home:post_delete' post.id %}" class="btn btn-danger">{% trans "Delete" %}</a>
+        <a id="1" href="{% url 'home:post_delete' post.id %}" class=" btn btn-danger">{% trans "Delete" %}</a>
         <a href="{% url 'home:post_update' post.id %}" class="btn btn-danger">{% trans "Update" %}</a>
     {% endif %}
     <h2>
@@ -30,11 +33,16 @@
             <p class="card-body">{{ comment.body }}</p>
 
             {% if request.user.is_authenticated %}
-                <a href="{% url 'home:post_like' post.id %}" class=" {% if can_like %}disabled {% endif %} btn btn-primary col-md-2 p-2 m-2">{% trans "like" %} {{post.like_cont }}</a>
+                <a href="{% url 'home:post_like' post.id %}"
+                   class="likebutton {% if can_like %}disabled {% endif %} btn btn-primary col-md-2 p-2 m-2" id="{{ post.id }}">{% trans "like" %} {{ post.like_cont }}</a>
+
+
+
+
                 <form action="{% url 'home:add_reply' post.id comment.id %}" method="post">
-                {% csrf_token %}
-                {{ from_reply.as_p }}
-                <input type="submit" value={% trans "Send" %}>
+                    {% csrf_token %}
+                    {{ from_reply.as_p }}
+                    <input type="submit" value={% trans "Send" %}>
                 </form>
             {% endif %}
 
@@ -42,14 +50,43 @@
 
 
             {% with replis=comment.rcomments.all %}
-            {% for reply in replis %}
-                <P class="bg-gradient p-3 m-2">{{ reply.user }}   | {{ reply.created|timesince }}<br/>{{ reply.body }}</P>
+                {% for reply in replis %}
+                    <P class="bg-gradient p-3 m-2">{{ reply.user }} | {{ reply.created|timesince }}<br/>{{ reply.body }}
+                    </P>
                 {% endfor %}
-        {% endwith %}
+            {% endwith %}
         </div><br/>
     {% empty %}
         <P class="card bg-dark text-white">{% trans "No comments yet!" %}</P>
     {% endfor %}
 
 
+
+{% endblock %}
+{% block script %}
+    <script>
+        btnlike = $(".likebutton")
+
+        btnlike.click(function (e) {
+            e.preventDefault()
+            post_id = e.target.id
+            url = "{% url 'home:post_like' 0 %}".replace('0', post_id)
+            $.get(
+                url,
+                function (data) {
+                    btnlike.removeClass();
+                    btnlike.addClass("btn btn-danger col-md-2 p-2 m-2");
+                    var n= {{ post.like_cont }}
+                    btnlike.html("Like"+""+ (n+1))
+
+
+                }
+            )
+
+        })
+
+
+
+
+    </script>
 {% endblock %}
