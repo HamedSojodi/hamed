@@ -77,7 +77,8 @@ class UserLogoutView(LoginRequiredMixin, View):
 
 class UserProfileView(LoginRequiredMixin, View):
     def get(self, request, user_id):
-        infose = Profile.objects.all()
+        user = User.objects.get(id=user_id)
+        infose = Profile.objects.filter(user=user)
         is_following = False
         user = get_object_or_404(User, pk=user_id)
         posts = user.posts.all()
