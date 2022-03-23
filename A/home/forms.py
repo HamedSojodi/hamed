@@ -14,7 +14,10 @@ class CommentCreateForm(forms.ModelForm):
         model = Comment
         fields = [_('body')]
         widgets = {
-            'body': forms.Textarea(attrs={'class': 'form-control'})
+            'body': forms.TextInput(attrs={'class': 'form-control mt-2'})
+        }
+        labels = {
+            "body": "Comment"
         }
 
 
