@@ -6,6 +6,7 @@
 {% block head %}
     <!-- Style -->
     <link rel="stylesheet" href="{% static 'account/profile/css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'account/profile/css/style2.css' %}">
 
 {% endblock %}
 
@@ -39,7 +40,6 @@
                         </div>
 
 
-
                         <br>
                         <div class="card bg-light text-dark">
                             <div class="card-body text-lg-center">{{ post.body }}</div>
@@ -58,7 +58,8 @@
                         <form class="form-control ml-1 shadow-none textarea" action="" method="post">
                             {% csrf_token %}
                             {{ form.as_p }}
-                            <input type="Submit" value="{% trans "Send" %}">
+                            <input class="btn btn-primary btn-sm shadow-none" type="Submit"
+                                   value="{% trans "Post comment" %}">
                         </form><br/>
                     {% else %}
                         <P class="alert alert-danger">{% trans "only logged in users can comment." %}</P>
@@ -82,9 +83,7 @@
                             <a href="{% url 'home:post_update' post.id %}"
                                class="btn btn-danger">{% trans "Update" %}</a>
                         {% endif %}
-                        <button class="btn btn-primary btn-sm shadow-none" type="button">Post comment</button>
-                        <button class="btn btn-outline-primary btn-sm ml-1 shadow-none" type="button">Cancel
-                        </button>
+
                     </div>
                 </div>
             </div>
@@ -104,6 +103,65 @@
 
 
 
+    <div class="container">
+        <div class="be-comment-block">
+            <h1 class="comments-title">{{ comments.count }} comments</h1>
+            {% for comment in comments %}
+                <div class="be-comment">
+
+
+                    <div class="be-img-comment">
+
+
+                        {% if comment.ucomments.image %}
+                            <img src="{{ comment.ucomments.image.url }}" alt="" class="rounded-circle img-fluid my-5"
+                                 style="width: 30px;"/>
+                        {% endif %}
+                    </div>
+
+
+                    <div class="be-comment-content">
+
+				<span class="be-comment-name">
+					<a href="blog-detail-2.html">{{ comment.user }}</a>
+					</span>
+                        <span class="be-comment-time">
+					<i class="fa fa-clock-o"></i>
+					{{ comment.created|timesince }}
+				</span>
+
+                        <p class="be-comment-text">
+                            {{ comment.body }}<br>
+                            {% if request.user.is_authenticated %}
+                                <a href="{% url 'home:post_like' post.id %}"
+                                   class="likebutton {% if can_like %}disabled {% endif %} btn btn-primary col-md-2 p-2 m-2"
+                                   id="{{ post.id }}">{% trans "like" %} {{ post.like_cont }}</a>
+
+                                <form action="{% url 'home:add_reply' post.id comment.id %}" method="post">
+                                    {% csrf_token %}
+                                    {{ from_reply.as_p }}
+                                    <input type="submit" value={% trans "Send" %}>
+                                </form>
+                            {% endif %}
+                        </p>
+
+                        {% with replis=comment.rcomments.all %}
+                            {% for reply in replis %}
+                                <P class="be-comment-text">{{ reply.user }}
+                                    | {{ reply.created|timesince }}<br/>{{ reply.body }}
+                                </P>
+                            {% endfor %}
+                        {% endwith %}
+                    </div>
+                    <br/>
+                    {% empty %}
+                    <P class="be-comment-text">{% trans "No comments yet!" %}</P>
+                </div>
+                </div>
+            {% endfor %}
+
+    </div>
+    </div>
 
 
 
@@ -133,41 +191,41 @@
 
 
 
-
-    <p>{{ comments.count }} comments</p>
-    {% for comment in comments %}
-        <div class="card bg-dark text-white">
-            <p class="card-header">{{ comment.user }} | {{ comment.created|timesince }}</p>
-            <p class="card-body">{{ comment.body }}</p>
-
-            {% if request.user.is_authenticated %}
-                <a href="{% url 'home:post_like' post.id %}"
-                   class="likebutton {% if can_like %}disabled {% endif %} btn btn-primary col-md-2 p-2 m-2"
-                   id="{{ post.id }}">{% trans "like" %} {{ post.like_cont }}</a>
-
-
-
-
-                <form action="{% url 'home:add_reply' post.id comment.id %}" method="post">
-                    {% csrf_token %}
-                    {{ from_reply.as_p }}
-                    <input type="submit" value={% trans "Send" %}>
-                </form>
-            {% endif %}
-
-
-
-
-            {% with replis=comment.rcomments.all %}
-                {% for reply in replis %}
-                    <P class="bg-gradient p-3 m-2">{{ reply.user }} | {{ reply.created|timesince }}<br/>{{ reply.body }}
-                    </P>
-                {% endfor %}
-            {% endwith %}
-        </div><br/>
-    {% empty %}
-        <P class="card bg-dark text-white">{% trans "No comments yet!" %}</P>
-    {% endfor %}
+{##}
+{#    <p>{{ comments.count }} comments</p>#}
+{#    {% for comment in comments %}#}
+{#        <div class="card bg-dark text-white">#}
+{#            <p class="card-header">{{ comment.user }} | {{ comment.created|timesince }}</p>#}
+{#            <p class="card-body">{{ comment.body }}</p>#}
+{##}
+{#            {% if request.user.is_authenticated %}#}
+{#                <a href="{% url 'home:post_like' post.id %}"#}
+{#                   class="likebutton {% if can_like %}disabled {% endif %} btn btn-primary col-md-2 p-2 m-2"#}
+{#                   id="{{ post.id }}">{% trans "like" %} {{ post.like_cont }}</a>#}
+{##}
+{##}
+{##}
+{##}
+{#                <form action="{% url 'home:add_reply' post.id comment.id %}" method="post">#}
+{#                    {% csrf_token %}#}
+{#                    {{ from_reply.as_p }}#}
+{#                    <input type="submit" value={% trans "Send" %}>#}
+{#                </form>#}
+{#            {% endif %}#}
+{##}
+{##}
+{##}
+{##}
+{#            {% with replis=comment.rcomments.all %}#}
+{#                {% for reply in replis %}#}
+{#                    <P class="bg-gradient p-3 m-2">{{ reply.user }} | {{ reply.created|timesince }}<br/>{{ reply.body }}#}
+{#                    </P>#}
+{#                {% endfor %}#}
+{#            {% endwith %}#}
+{#        </div><br/>#}
+{#    {% empty %}#}
+{#        <P class="card bg-dark text-white">{% trans "No comments yet!" %}</P>#}
+{#    {% endfor %}#}
 
 
 
