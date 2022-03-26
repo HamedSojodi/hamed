@@ -26,7 +26,7 @@
 
 
                         <div class="d-flex flex-row user-info">
-                            <a href="{{ post.get_absolute_url }}"> {% if post.user.profile.image %}
+                            <a href="{% url 'account:user_profile' post.user.id %}"> {% if post.user.profile.image %}
                                 <img class="card-img-center" src="{{ post.user.profile.image.url }}" width="40">
 
                             {% endif %}
