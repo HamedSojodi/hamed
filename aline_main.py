@@ -10,11 +10,11 @@ class Aline:
         pygame.init()
         self.setting = Settings()
         self.screen = pygame.display.set_mode((0, 0), pygame.FULLSCREEN)
-        self.setting.heigh_screen=self.screen.get_rect().height
+        self.setting.heigh_screen = self.screen.get_rect().height
         self.setting.wigth_screen = self.screen.get_rect().width
         pygame.display.set_caption("Aline_invasion")
 
-        self.bullets=pygame.sprite.Group()
+        self.bullets = pygame.sprite.Group()
 
         # make ship
         self.ship = Ship(self)
@@ -23,8 +23,16 @@ class Aline:
         while True:
             self._check_event()
             self.ship.update()
-            self.bullets.update()
+            self.bullet_update()
             self._update_screen()
+
+    def bullet_update(self):
+        self.bullets.update()
+
+        # remove bullet list for speed program
+        for bullet in self.bullets.copy():
+            if bullet.rect.bottom <= 0:
+                self.bullets.remove(bullet)
 
     def _check_event(self):
         for event in pygame.event.get():
@@ -35,7 +43,6 @@ class Aline:
 
             if event.type == pygame.KEYUP:
                 self._check_keyup(event)
-
 
     def _cheack_keydown(self, event):
         if event.key == pygame.K_RIGHT:
@@ -57,14 +64,14 @@ class Aline:
             self.ship.moving_left = False
 
     def fire_bullet(self):
-        new_bullet =Bullet(self)
-        self.bullets.add(new_bullet)
-
+        if len(self.bullets) < self.setting.bullet_allowed:
+            new_bullet = Bullet(self)
+            self.bullets.add(new_bullet)
 
     def _update_screen(self):
         self.screen.fill(self.setting.bg_color)
         self.ship.blitm()
-        for bullet in self.bullets.sprites  ():
+        for bullet in self.bullets.sprites():
             bullet.draw_bullet()
         pygame.display.flip()
 
