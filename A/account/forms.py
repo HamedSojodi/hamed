@@ -4,8 +4,6 @@ from .models import User
 from django.contrib.auth.forms import ReadOnlyPasswordHashField
 
 
-
-
 class UserCreationForm(forms.ModelForm):
     password1 = forms.CharField(label='Password', widget=forms.PasswordInput)
     password2 = forms.CharField(label='Password confirmation', widget=forms.PasswordInput)
@@ -34,7 +32,8 @@ class UserChangeForm(forms.ModelForm):
      the user, but replaces the password field with admin's
      disabled password hash display field."""
 
-    password = ReadOnlyPasswordHashField(help_text="you can change password using <a href=\"../password/\">this form</a>.")
+    password = ReadOnlyPasswordHashField(
+        help_text="you can change password using <a href=\"../password/\">this form</a>.")
 
     class Meta:
         model = User
@@ -46,3 +45,7 @@ class UserRegistrationForm(forms.Form):
     full_name = forms.CharField(label='full name')
     phone = forms.CharField(max_length=11)
     password = forms.CharField(widget=forms.PasswordInput)
+
+
+class VerifyCodeForm(forms.Form):
+    code = forms.IntegerField()
