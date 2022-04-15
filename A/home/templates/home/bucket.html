@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% block content %}
+    <div class="container mt-3">
+        <table class="table table-dark">
+            <thead>
+            <tr>
+                <th>#</th>
+                <th>Name</th>
+                <th>Size</th>
+                <th>download</th>
+                <th>delete</th>
+            </tr>
+            </thead>
+            {% for obj in objects %}
+            <tbody>
+            <tr>
+                <td>{{ forloop.counter }}</td>
+                <td>{{ obj.Key }}</td>
+                <td>{{ obj.Size|filesizeformat }}</td>
+                <td>download</td>
+                <td>delete</td>
+            </tr>
+
+            </tbody>
+            {% endfor %}
+        </table>
+    </div>
+
+
+{% endblock %}
