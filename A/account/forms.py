@@ -61,5 +61,11 @@ class UserRegistrationForm(forms.Form):
         return phone
 
 
+class UserLoginForm(forms.ModelForm):
+    class Meta:
+        model = User
+        fields = ['phone', 'password']
+
+
 class VerifyCodeForm(forms.Form):
     code = forms.IntegerField()

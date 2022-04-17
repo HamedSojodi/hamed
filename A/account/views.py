@@ -3,9 +3,9 @@ import random
 from django.contrib import messages
 from django.shortcuts import render, redirect
 from django.views import View
-
+from django.contrib.auth import login, logout, authenticate
 from utils import send_otp_code
-from .forms import UserRegistrationForm, VerifyCodeForm
+from .forms import UserRegistrationForm, VerifyCodeForm, UserLoginForm
 from .models import OtPCode, User
 
 
@@ -57,3 +57,23 @@ class UserRegisterVerifyCodeView(View):
                 messages.error(request, 'this cod is wrong', 'danger')
                 return redirect('account:verifyCode')
             return redirect('home:home')
+
+
+class UserLoginView(View):
+    from_class = UserLoginForm
+
+    def get(self, request):
+        form = self.from_class
+        return render(request, 'acount/login.html', {'form': form})
+
+    def post(self, request):
+        form = self.from_class(request.POST)
+        if form.is_valid():
+            cd = form.cleaned_data
+            user = authenticate(phone=cd['phone'], password=cd['password'])
+            if user is not None:
+                login(request, user)
+                messages.success(request, 'you can login sucessfully', 'sucess')
+                return redirect('home:home')
+            messages.success(request, 'phone or password is wrong', 'danger')
+        return render(request, 'acount/login.html', {'form': form})
