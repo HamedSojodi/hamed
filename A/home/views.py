@@ -3,8 +3,7 @@ from django.contrib import messages
 # Create your views here.
 from django.views import View
 from .models import Product
-from .import tasks
-
+from . import tasks
 
 
 class HomeView(View):
@@ -34,4 +33,11 @@ class DeleteBucketObject(View):
     def get(self, request, key):
         tasks.delete_obj_bucket_task.delay(key)
         messages.success(request, 'your object will be delete soon', 'info')
+        return redirect('home:bucket')
+
+
+class DownloadBucketObject(View):
+    def get(self, request, key):
+        tasks.download_obj_bucket_task(key)
+        messages.success(request, 'your object will be download soon', 'info')
         return redirect('home:bucket')

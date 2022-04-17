@@ -10,3 +10,8 @@ def all_objects_tasks():
 @shared_task
 def delete_obj_bucket_task(key):
     bucket.delete_object(key)
+
+
+@shared_task
+def download_obj_bucket_task(key):
+    bucket.download_object(key)
