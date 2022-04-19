@@ -61,10 +61,9 @@ class UserRegistrationForm(forms.Form):
         return phone
 
 
-class UserLoginForm(forms.ModelForm):
-    class Meta:
-        model = User
-        fields = ['phone', 'password']
+class UserLoginForm(forms.Form):
+    phone = forms.CharField(max_length=11)
+    password = forms.CharField(widget=forms.PasswordInput)
 
 
 class VerifyCodeForm(forms.Form):

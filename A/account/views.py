@@ -29,7 +29,7 @@ class UserRegisterView(View):
                 'full_name': form.cleaned_data['full_name'],
                 'password': form.cleaned_data['password'],
             }
-            messages.success(request, 'we sent you a code', 'sucess')
+            messages.success(request, 'we sent you a code', 'success')
             return redirect('account:verifyCode')
         return render(request, self.template_name, {'form': form})
 
@@ -51,7 +51,7 @@ class UserRegisterVerifyCodeView(View):
                 User.objects.create_user(email=user_session['email'], phone=user_session['phone'],
                                          full_name=user_session['full_name'], password=user_session['password'])
                 code_instance.delete()
-                messages.success(request, 'you registered sucessfully', 'sucess')
+                messages.success(request, 'you registered sucessfully','success')
 
             else:
                 messages.error(request, 'this cod is wrong', 'danger')
@@ -70,10 +70,17 @@ class UserLoginView(View):
         form = self.from_class(request.POST)
         if form.is_valid():
             cd = form.cleaned_data
-            user = authenticate(phone=cd['phone'], password=cd['password'])
+            user = authenticate(request, phone=cd['phone'], password=cd['password'])
             if user is not None:
                 login(request, user)
-                messages.success(request, 'you can login sucessfully', 'sucess')
+                messages.success(request, 'you can login sucessfully', 'success')
                 return redirect('home:home')
-            messages.success(request, 'phone or password is wrong', 'danger')
+            messages.error(request, 'phone or password is wrong', 'danger')
         return render(request, 'acount/login.html', {'form': form})
+
+
+class UserLogoutView(View):
+    def get(self, request):
+        logout(request)
+        messages.success(request, 'your logout sucessfully', 'success')
+        return redirect('home:home')

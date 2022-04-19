@@ -2,6 +2,8 @@ from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib import messages
 # Create your views here.
 from django.views import View
+
+from utils import IsAdminUsermixin
 from .models import Product
 from . import tasks
 
@@ -21,7 +23,7 @@ class ProductDetileView(View):
         pass
 
 
-class BucketHome(View):
+class BucketHome(IsAdminUsermixin, View):
     template_name = 'home/bucket.html'
 
     def get(self, requeat):
@@ -29,14 +31,14 @@ class BucketHome(View):
         return render(requeat, self.template_name, {'objects': objects})
 
 
-class DeleteBucketObject(View):
+class DeleteBucketObject(IsAdminUsermixin,View):
     def get(self, request, key):
         tasks.delete_obj_bucket_task.delay(key)
         messages.success(request, 'your object will be delete soon', 'info')
         return redirect('home:bucket')
 
 
-class DownloadBucketObject(View):
+class DownloadBucketObject(IsAdminUsermixin, View):
     def get(self, request, key):
         tasks.download_obj_bucket_task(key)
         messages.success(request, 'your object will be download soon', 'info')
