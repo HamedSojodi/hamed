@@ -36,9 +36,9 @@ class ProductDetileView(View):
 class BucketHome(IsAdminUsermixin, View):
     template_name = 'home/bucket.html'
 
-    def get(self, requeat):
+    def get(self, request):
         objects = tasks.all_objects_tasks
-        return render(requeat, self.template_name, {'objects': objects})
+        return render(request,  self.template_name, {'objects': objects})
 
 
 class DeleteBucketObject(IsAdminUsermixin, View):

@@ -20,4 +20,4 @@ def send_otp_code(phone, code):
 
 class IsAdminUsermixin(UserPassesTestMixin):
     def test_func(self):
-        return self.request.user.is_authenticated and request.user.is_admin
+        return self.request.user.is_authenticated and self.request.user.is_admin
