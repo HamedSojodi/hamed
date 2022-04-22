@@ -4,6 +4,16 @@
     <link rel="stylesheet" href="{% static 'home/css/home.css' %}">
 {% endblock %}
 {% block content %}
+
+
+
+
+    {% for cat in categories %}
+      <a href="{{ cat.get_absolute_url }}" class="btn btn-dark">{{ cat.name }} </a>
+
+    {% endfor %}
+
+
        <br/><br/>
      {% for product in products %}
         <div class="card" style="width: 20em; display:inline-block;">

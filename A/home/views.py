@@ -4,14 +4,24 @@ from django.contrib import messages
 from django.views import View
 
 from utils import IsAdminUsermixin
-from .models import Product
+from .models import Product, Category
 from . import tasks
 
 
 class HomeView(View):
-    def get(self, request):
+    def get(self, request, category_slug=None):
         products = Product.objects.filter(available=True)
-        return render(request, 'home/home.html', {'products': products})
+        categories = Category.objects.all()
+        print(categories)
+        print(products)
+        print(category_slug)
+        if category_slug:
+            print(category_slug)
+            category = Category.objects.get(slug= category_slug)
+            products=products.filter(category=category )
+        else:
+            print('not fond')
+        return render(request, 'home/home.html', {'products': products, 'categories': categories})
 
 
 class ProductDetileView(View):
@@ -31,7 +41,7 @@ class BucketHome(IsAdminUsermixin, View):
         return render(requeat, self.template_name, {'objects': objects})
 
 
-class DeleteBucketObject(IsAdminUsermixin,View):
+class DeleteBucketObject(IsAdminUsermixin, View):
     def get(self, request, key):
         tasks.delete_obj_bucket_task.delay(key)
         messages.success(request, 'your object will be delete soon', 'info')
