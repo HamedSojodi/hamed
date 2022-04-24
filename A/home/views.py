@@ -11,7 +11,7 @@ from . import tasks
 class HomeView(View):
     def get(self, request, category_slug=None):
         products = Product.objects.filter(available=True)
-        categories = Category.objects.all()
+        categories = Category.objects.filter(is_sub=False)
         print(categories)
         print(products)
         print(category_slug)
