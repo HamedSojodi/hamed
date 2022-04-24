@@ -12,16 +12,13 @@ class HomeView(View):
     def get(self, request, category_slug=None):
         products = Product.objects.filter(available=True)
         categories = Category.objects.filter(is_sub=False)
-        print(categories)
-        print(products)
-        print(category_slug)
         if category_slug:
-            print(category_slug)
-            category = Category.objects.get(slug= category_slug)
-            products=products.filter(category=category )
+            category = Category.objects.get(slug=category_slug)
+            products = products.filter(category=category)
         else:
             print('not fond')
-        return render(request, 'home/home.html', {'products': products, 'categories': categories})
+        return render(request, 'home/home.html', {'products': products,
+                                                  'categories': categories})
 
 
 class ProductDetileView(View):
@@ -38,7 +35,7 @@ class BucketHome(IsAdminUsermixin, View):
 
     def get(self, request):
         objects = tasks.all_objects_tasks
-        return render(request,  self.template_name, {'objects': objects})
+        return render(request, self.template_name, {'objects': objects})
 
 
 class DeleteBucketObject(IsAdminUsermixin, View):
