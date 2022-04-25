@@ -3,15 +3,15 @@
 
 {% block content %}
     <h2>{{ product.name }}</h2>
-     <small>{{ product.created }}</small><br/>
+    <small>{{ product.created }}</small><br/>
     <p>{{ product.price }} Toman</p>
     <img width="200px" src="{{ product.image.url }}" alt="">
     <p>{{ product.description }}</p>
     <br/><br/>
-    <form action="" method="post">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <input type="submit" value="add to cart">
+    <form action="{% url 'orders:cart_add' prudoct_id %}" method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <input type="submit" value="add to cart">
     </form>
 
 {% endblock %}
