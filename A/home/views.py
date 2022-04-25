@@ -2,7 +2,7 @@ from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib import messages
 # Create your views here.
 from django.views import View
-
+from orders.forms import CartAddForm
 from utils import IsAdminUsermixin
 from .models import Product, Category
 from . import tasks
@@ -22,9 +22,12 @@ class HomeView(View):
 
 
 class ProductDetileView(View):
+    form_class = CartAddForm
+
     def get(self, request, slug):
+        form = self.form_class
         product = get_object_or_404(Product, slug=slug)
-        return render(request, 'home/detile.html', {'product': product})
+        return render(request, 'home/detile.html', {'product': product, 'form': form})
 
     def post(self, request):
         pass
