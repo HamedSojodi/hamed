@@ -1,36 +1,30 @@
 {% extends 'base.html' %}
 {% block content %}
-     <br/>
+    <br/>
 
     <table class="table table-dark table-striped">
-  <thead>
-    <tr>
-      <th scope="col">#</th>
-      <th scope="col">First</th>
-      <th scope="col">Last</th>
-      <th scope="col">Handle</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th scope="row">1</th>
-      <td>Mark</td>
-      <td>Otto</td>
-      <td>@mdo</td>
-    </tr>
-    <tr>
-      <th scope="row">2</th>
-      <td>Jacob</td>
-      <td>Thornton</td>
-      <td>@fat</td>
-    </tr>
-    <tr>
-      <th scope="row">3</th>
-      <td colspan="2">Larry the Bird</td>
-      <td>@twitter</td>
-    </tr>
-  </tbody>
-</table>
+        <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">name</th>
+            <th scope="col">Quantity</th>
+            <th scope="col">Unit price</th>
+            <th scope="col">Total price</th>
+
+        </tr>
+        </thead>
+        {% for item in cart %}
+            <tbody>
+            <tr>
+                <th scope="row">{{ forloop.counter }}</th>
+                <td>{{ item.product }}</td>
+                <td>{{ item.quantity }}</td>
+                <td>{{ item.price }}</td>
+                <td>{{ item.total_price }}</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
 
 
 {% endblock %}

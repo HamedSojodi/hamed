@@ -22,15 +22,10 @@ class HomeView(View):
 
 
 class ProductDetileView(View):
-    form_class = CartAddForm
-
     def get(self, request, slug):
-        form = self.form_class
+        form = CartAddForm()
         product = get_object_or_404(Product, slug=slug)
         return render(request, 'home/detile.html', {'product': product, 'form': form})
-
-    def post(self, request):
-        pass
 
 
 class BucketHome(IsAdminUsermixin, View):
