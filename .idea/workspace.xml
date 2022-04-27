@@ -2,21 +2,14 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="782ea8ef-38a0-4be7-b327-5b4105501626" name="Changes" comment="shoping project with django">
-      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/Django.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/Django.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/profiles_settings.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/A/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/A/.idea/A.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/A/.idea/dataSources.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/A/.idea/inspectionProfiles/profiles_settings.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/A/.idea/misc.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/A/.idea/modules.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/A/A/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/A/A/urls.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/A/account/forms.py" beforeDir="false" afterPath="$PROJECT_DIR$/A/account/forms.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/A/account/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/A/account/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/A/templates/inc/navbar.html" beforeDir="false" afterPath="$PROJECT_DIR$/A/templates/inc/navbar.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/A/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/A/db.sqlite3" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/A/home/templates/home/home.html" beforeDir="false" afterPath="$PROJECT_DIR$/A/home/templates/home/home.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/A/orders/cart.py" beforeDir="false" afterPath="$PROJECT_DIR$/A/orders/cart.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/A/orders/templates/orders/cart.html" beforeDir="false" afterPath="$PROJECT_DIR$/A/orders/templates/orders/cart.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/A/orders/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/A/orders/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/A/orders/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/A/orders/views.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -76,9 +69,9 @@
         <env name="PYTHONUNBUFFERED" value="1" />
         <env name="DJANGO_SETTINGS_MODULE" value="A.settings" />
       </envs>
-      <option name="SDK_HOME" value="" />
+      <option name="SDK_HOME" value="C:\Users\kian rayaneh\.virtualenvs\Django\Scripts\python.exe" />
       <option name="WORKING_DIRECTORY" value="" />
-      <option name="IS_MODULE_SDK" value="true" />
+      <option name="IS_MODULE_SDK" value="false" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <option name="launchJavascriptDebuger" value="false" />
@@ -103,6 +96,8 @@
       <updated>1648723035525</updated>
       <workItem from="1648723041744" duration="294000" />
       <workItem from="1648724658904" duration="4228000" />
+      <workItem from="1650710005126" duration="39000" />
+      <workItem from="1651056815039" duration="1177000" />
     </task>
     <task id="LOCAL-00001" summary="shoping project with django">
       <created>1648723191229</created>
