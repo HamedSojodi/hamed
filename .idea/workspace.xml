@@ -1,15 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="782ea8ef-38a0-4be7-b327-5b4105501626" name="Changes" comment="shoping project with django">
-      <change beforePath="$PROJECT_DIR$/.idea/Django.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/Django.iml" afterDir="false" />
+    <list default="true" id="782ea8ef-38a0-4be7-b327-5b4105501626" name="Changes" comment="remove cart and orders">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/A/A/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/A/A/settings.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/A/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/A/db.sqlite3" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/A/home/templates/home/home.html" beforeDir="false" afterPath="$PROJECT_DIR$/A/home/templates/home/home.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/A/orders/cart.py" beforeDir="false" afterPath="$PROJECT_DIR$/A/orders/cart.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/A/orders/templates/orders/cart.html" beforeDir="false" afterPath="$PROJECT_DIR$/A/orders/templates/orders/cart.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/A/orders/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/A/orders/urls.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/A/orders/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/A/orders/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/A/templates/inc/navbar.html" beforeDir="false" afterPath="$PROJECT_DIR$/A/templates/inc/navbar.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -22,8 +19,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Python Script" />
         <option value="HTML File" />
+        <option value="Python Script" />
       </list>
     </option>
   </component>
@@ -97,7 +94,8 @@
       <workItem from="1648723041744" duration="294000" />
       <workItem from="1648724658904" duration="4228000" />
       <workItem from="1650710005126" duration="39000" />
-      <workItem from="1651056815039" duration="1177000" />
+      <workItem from="1651056815039" duration="2794000" />
+      <workItem from="1651132410588" duration="956000" />
     </task>
     <task id="LOCAL-00001" summary="shoping project with django">
       <created>1648723191229</created>
@@ -106,7 +104,14 @@
       <option name="project" value="LOCAL" />
       <updated>1648723191229</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="remove cart and orders">
+      <created>1651059526405</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1651059526405</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -127,6 +132,7 @@
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
     <MESSAGE value="shoping project with django" />
-    <option name="LAST_COMMIT_MESSAGE" value="shoping project with django" />
+    <MESSAGE value="remove cart and orders" />
+    <option name="LAST_COMMIT_MESSAGE" value="remove cart and orders" />
   </component>
 </project>
