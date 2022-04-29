@@ -1,4 +1,4 @@
-from A.home.models import Product
+from home.models import Product
 
 CART_SESSION_ID = 'cart'
 
