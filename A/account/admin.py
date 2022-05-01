@@ -11,8 +11,6 @@ class OtPCodeAdmin(admin.ModelAdmin):
     list_display = ('phone', 'code', 'created')
 
 
-
-
 class UserAdmin(BaseUserAdmin):
     # The forms to add and change user instances
     form = UserChangeForm
@@ -24,7 +22,7 @@ class UserAdmin(BaseUserAdmin):
     fieldsets = (
         ('Main', {'fields': ('email', 'phone', 'full_name', 'password')}),
         ('Permissions',
-         {'fields': ('is_active', 'is_admin', 'last_login')}),
+         {'fields': ('is_active', 'is_admin', 'last_login', 'is_superuser', 'groups', 'user_permissions')}),
     )
 
     add_fieldsets = (
@@ -33,9 +31,8 @@ class UserAdmin(BaseUserAdmin):
 
     search_fields = ('email', 'full_name')
     ordering = ('full_name',)
-    filter_horizontal = ()
+    filter_horizontal = ('groups', 'user_permissions')
+    raw_id_fields = ()
 
 
-admin.site.unregister(Group)
 admin.site.register(User, UserAdmin)
-
