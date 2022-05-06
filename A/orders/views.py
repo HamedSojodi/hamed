@@ -3,7 +3,7 @@ import datetime
 from django.contrib import messages
 from django.shortcuts import render, get_object_or_404, redirect
 from django.http import HttpResponse
-from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
 from django.views import View
 from home.models import Product
 from .cart import Cart
@@ -19,7 +19,9 @@ class CartView(View):
         return render(request, 'orders/cart.html', {'cart': cart})
 
 
-class CartAddView(View):
+class CartAddView(PermissionRequiredMixin, View):
+    permission_required = 'orders.add_order'
+
     def post(self, request, product_id):
         cart = Cart(request)
         product = get_object_or_404(Product, id=product_id)
@@ -41,9 +43,9 @@ class DetailOrderView(LoginRequiredMixin, View):
     form_class = CouponApplyForm
 
     def get(self, request, order_id):
-        form =self.form_class()
+        form = self.form_class()
         order = get_object_or_404(Order, id=order_id)
-        return render(request, 'orders/order.html', {'order': order, 'form':form})
+        return render(request, 'orders/order.html', {'order': order, 'form': form})
 
 
 class CreateOrderView(LoginRequiredMixin, View):
