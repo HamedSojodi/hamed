@@ -1,5 +1,6 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib import messages
+from django.views.generic.base import TemplateView
 # Create your views here.
 from django.views import View
 from orders.forms import CartAddForm
@@ -7,18 +8,31 @@ from utils import IsAdminUsermixin
 from .models import Product, Category
 from . import tasks
 
+#
+# class HomeView(View):
+#     def get(self, request, category_slug=None):
+#         products = Product.objects.filter(available=True)
+#         categories = Category.objects.filter(is_sub=False)
+#         if category_slug:
+#             category = Category.objects.get(slug=category_slug)
+#             products = products.filter(category=category)
+#         else:
+#             print('not fond')
+#         return render(request, 'home/home.html', {'products': products,
+#                                                   'categories': categories})
 
-class HomeView(View):
-    def get(self, request, category_slug=None):
-        products = Product.objects.filter(available=True)
-        categories = Category.objects.filter(is_sub=False)
+
+class HomeView(TemplateView):
+    template_name = 'home/home.html'
+
+    def get_context_data(self, category_slug=None, **kwargs):
+        context =super().get_context_data(**kwargs)
+        context['products'] = Product.objects.filter(available=True)
+        context['categories'] = Category.objects.filter(is_sub=False)
         if category_slug:
-            category = Category.objects.get(slug=category_slug)
-            products = products.filter(category=category)
-        else:
-            print('not fond')
-        return render(request, 'home/home.html', {'products': products,
-                                                  'categories': categories})
+            context['category'] = Category.objects.get(slug=category_slug)
+            context['products'] = context['products'].filter(category= context['category'])
+        return context
 
 
 class ProductDetileView(View):

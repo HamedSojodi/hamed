@@ -2,11 +2,14 @@ import random
 
 from django.contrib import messages
 from django.shortcuts import render, redirect
-from django.views import View
+from django.views import View, generic
 from django.contrib.auth import login, logout, authenticate
 from utils import send_otp_code
 from .forms import UserRegistrationForm, VerifyCodeForm, UserLoginForm
 from .models import OtPCode, User
+from django.views.generic.edit import CreateView
+from django.views.generic import FormView
+
 
 
 class UserRegisterView(View):
@@ -34,6 +37,8 @@ class UserRegisterView(View):
         return render(request, self.template_name, {'form': form})
 
 
+
+
 class UserRegisterVerifyCodeView(View):
     form_class = VerifyCodeForm
 
@@ -51,7 +56,7 @@ class UserRegisterVerifyCodeView(View):
                 User.objects.create_user(email=user_session['email'], phone=user_session['phone'],
                                          full_name=user_session['full_name'], password=user_session['password'])
                 code_instance.delete()
-                messages.success(request, 'you registered sucessfully','success')
+                messages.success(request, 'you registered sucessfully', 'success')
 
             else:
                 messages.error(request, 'this cod is wrong', 'danger')
