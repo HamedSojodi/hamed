@@ -18,7 +18,6 @@ class CartView(View):
         cart = Cart(request)
         return render(request, 'orders/cart.html', {'cart': cart})
 
-
 class CartAddView(PermissionRequiredMixin, View):
     permission_required = 'orders.add_order'
 
