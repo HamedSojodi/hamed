@@ -12,7 +12,6 @@ from django.views.generic.edit import CreateView
 from django.views.generic import FormView
 
 
-
 # class UserRegisterView(View):
 #     form_class = UserRegistrationForm
 #     template_name = 'acount/register.html'
@@ -59,8 +58,6 @@ class UserRegisterView(FormView):
         }
 
 
-
-
 class UserRegisterVerifyCodeView(View):
     form_class = VerifyCodeForm
 
@@ -86,34 +83,39 @@ class UserRegisterVerifyCodeView(View):
             return redirect('home:home')
 
 
+# class UserLoginView(View):
+#     from_class = UserLoginForm
+#
+#     def get(self, request):
+#         form = self.from_class
+#         return render(request, 'acount/login.html', {'form': form})
+#
+#     def post(self, request):
+#         form = self.from_class(request.POST)
+#         if form.is_valid():
+#             cd = form.cleaned_data
+#             user = authenticate(request, phone=cd['phone'], password=cd['password'])
+#             if user is not None:
+#                 login(request, user)
+#                 messages.success(request, 'you can login sucessfully', 'success')
+#                 return redirect('home:home')
+#             messages.error(request, 'phone or password is wrong', 'danger')
+#         return render(request, 'acount/login.html', {'form': form})
 
+class UserLoginView(FormView):
+    template_name = 'acount/login.html'
+    form_class = UserLoginForm
+    success_url = reverse_lazy('home:home')
 
-
-
-
-
-
-class UserLoginView(View):
-    from_class = UserLoginForm
-
-    def get(self, request):
-        form = self.from_class
-        return render(request, 'acount/login.html', {'form': form})
-
-    def post(self, request):
-        form = self.from_class(request.POST)
-        if form.is_valid():
-            cd = form.cleaned_data
-            user = authenticate(request, phone=cd['phone'], password=cd['password'])
-            if user is not None:
-                login(request, user)
-                messages.success(request, 'you can login sucessfully', 'success')
-                return redirect('home:home')
-            messages.error(request, 'phone or password is wrong', 'danger')
-        return render(request, 'acount/login.html', {'form': form})
-
-
-
+    def form_valid(self, form):
+        cd = form.cleaned_data
+        user = authenticate(self.request, phone=cd['phone'], password=cd['password'])
+        if user is not None:
+            login(self.request, user)
+            messages.success(self.request, 'you can login sucessfully', 'success')
+        else:
+            messages.error(self.request, 'phone or password is wrong', 'danger')
+        return super().form_valid(form)
 
 
 class UserLogoutView(View):
